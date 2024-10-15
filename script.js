@@ -4,7 +4,8 @@
 const audioPregunta = new Audio('https://raw.githubusercontent.com/AxelCotonGutierrez/Puzzle-Figuras-Basicas/master/audio/Pregunta.mp3');
 const felicidadesAudio = new Audio('https://raw.githubusercontent.com/AxelCotonGutierrez/Puzzle-Figuras-Basicas/master/audio/Felicidades.mp3');
 const intentarAudio = new Audio('https://raw.githubusercontent.com/AxelCotonGutierrez/Puzzle-Figuras-Basicas/master/audio/Intentar.mp3');
-const comprobarAudio = new Audio('https://raw.githubusercontent.com/AxelCotonGutierrez/Puzzle-Figuras-Basicas/master/audio/Comprobar.mp3'); 
+const comprobarAudio = new Audio('https://raw.githubusercontent.com/AxelCotonGutierrez/Puzzle-Figuras-Basicas/master/audio/Comprobar.mp3'); // Cargar Comprobar.mp3
+
 document.addEventListener('DOMContentLoaded', (event) => {
     initPuzzle();
     document.getElementById('check-button').addEventListener('click', checkPuzzle);
@@ -16,19 +17,12 @@ function playAudioPregunta() {
     playAudio(audioPregunta);
 }
 
-// Función para reproducir el sonido del botón "Comprobar"
+// Función para reproducir el sonido del megáfono debajo del botón "Comprobar"
 function playAudioComprobar() {
-    const result = document.getElementById('result').textContent;
     playAudio(comprobarAudio); // Reproducir Comprobar.mp3
-
-    if (result.includes('Correcto')) {
-        playAudio(felicidadesAudio); // Reproducir audio de felicitaciones
-    } else if (result.includes('incorrecto')) {
-        playAudio(intentarAudio); // Reproducir audio de inténtalo de nuevo
-    }
 }
 
-// Función para reproducir audio si el sonido está activado
+// Función para reproducir audio si el sonido está activado y manejar errores
 function playAudio(audioElement) {
     if (document.getElementById('sound-control').checked) { // Verificar si el sonido está activado
         audioElement.play().then(() => {
@@ -144,6 +138,7 @@ function addNextPiece() {
     document.getElementById('puzzle-pieces').appendChild(nextPiece);
 }
 
+// Función para comprobar el puzzle
 function checkPuzzle() {
     let correctCount = 0;
     const numRows = 3;
@@ -164,13 +159,12 @@ function checkPuzzle() {
     if (correctCount === numRows * numCols) {
         resultDisplay.textContent = '¡Correcto! Todas las piezas están en el lugar adecuado.';
         resultDisplay.style.color = 'green';
+        playAudio(felicidadesAudio); // Reproducir audio de felicitaciones
     } else {
         resultDisplay.textContent = `Algunas piezas están en el lugar incorrecto. Intenta de nuevo. (${correctCount} de ${numRows * numCols} correctas)`;
         resultDisplay.style.color = 'red';
+        playAudio(intentarAudio); // Reproducir audio de inténtalo de nuevo
     }
-
-    // Llamar a la función para reproducir el sonido después de comprobar
-    playAudioComprobar();
 }
 
 function resetGame() {
@@ -183,6 +177,7 @@ function resetGame() {
     initPuzzle();
 }
 
+// Funciones táctiles para arrastrar las piezas en dispositivos móviles
 function touchStart(e) {
     draggedElement = e.target;
     const touchLocation = e.targetTouches[0];
