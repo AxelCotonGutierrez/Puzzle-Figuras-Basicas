@@ -1,10 +1,45 @@
 // Axel Cotón Gutiérrez Copyright 2024
+
+// Cargar archivos de audio para la pregunta, felicitaciones, inténtalo de nuevo y comprobar
+const audioPregunta = new Audio('https://raw.githubusercontent.com/AxelCotonGutierrez/Puzzle-Figuras-Basicas/master/audio/Pregunta.mp3');
+const felicidadesAudio = new Audio('https://raw.githubusercontent.com/AxelCotonGutierrez/Puzzle-Figuras-Basicas/master/audio/Felicidades.mp3');
+const intentarAudio = new Audio('https://raw.githubusercontent.com/AxelCotonGutierrez/Puzzle-Figuras-Basicas/master/audio/Intentar.mp3');
+const comprobarAudio = new Audio('https://raw.githubusercontent.com/AxelCotonGutierrez/Puzzle-Figuras-Basicas/master/audio/Comprobar.mp3'); 
 document.addEventListener('DOMContentLoaded', (event) => {
     initPuzzle();
     document.getElementById('check-button').addEventListener('click', checkPuzzle);
     document.getElementById('next-question').addEventListener('click', resetGame);
 });
 
+// Función para reproducir el sonido de la pregunta
+function playAudioPregunta() {
+    playAudio(audioPregunta);
+}
+
+// Función para reproducir el sonido del botón "Comprobar"
+function playAudioComprobar() {
+    const result = document.getElementById('result').textContent;
+    playAudio(comprobarAudio); // Reproducir Comprobar.mp3
+
+    if (result.includes('Correcto')) {
+        playAudio(felicidadesAudio); // Reproducir audio de felicitaciones
+    } else if (result.includes('incorrecto')) {
+        playAudio(intentarAudio); // Reproducir audio de inténtalo de nuevo
+    }
+}
+
+// Función para reproducir audio si el sonido está activado
+function playAudio(audioElement) {
+    if (document.getElementById('sound-control').checked) { // Verificar si el sonido está activado
+        audioElement.play().then(() => {
+            console.log('Audio reproducido correctamente');
+        }).catch(error => {
+            console.error('Error al reproducir el audio:', error);
+        });
+    }
+}
+
+// Lógica del puzzle
 let remainingPieces = []; // Almacenar las piezas restantes
 let draggedElement = null; // Variable global para almacenar el elemento arrastrado
 
@@ -133,6 +168,9 @@ function checkPuzzle() {
         resultDisplay.textContent = `Algunas piezas están en el lugar incorrecto. Intenta de nuevo. (${correctCount} de ${numRows * numCols} correctas)`;
         resultDisplay.style.color = 'red';
     }
+
+    // Llamar a la función para reproducir el sonido después de comprobar
+    playAudioComprobar();
 }
 
 function resetGame() {
@@ -197,19 +235,13 @@ function isElementOverlapping(element1, element2) {
     return centerX > rect2.left && centerX < rect2.right && centerY > rect2.top && centerY < rect2.bottom;
 }
 
-function addNextPiece() {
-    const nextPiece = remainingPieces.shift();
-    document.getElementById('puzzle-pieces').appendChild(nextPiece);
-    addTouchEventsToPiece(nextPiece); // Añadir eventos táctiles a la nueva pieza
+function addTouchEventsToPieces() {
+    const pieces = document.querySelectorAll('.puzzle-piece');
+    pieces.forEach(addTouchEventsToPiece);
 }
 
 function addTouchEventsToPiece(piece) {
     piece.addEventListener('touchstart', touchStart, { passive: false });
     piece.addEventListener('touchmove', touchMove, { passive: false });
     piece.addEventListener('touchend', touchEnd);
-}
-
-function addTouchEventsToPieces() {
-    const pieces = document.querySelectorAll('.puzzle-piece');
-    pieces.forEach(addTouchEventsToPiece);
 }

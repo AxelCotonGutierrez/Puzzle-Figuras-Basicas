@@ -18,34 +18,37 @@
     <header>
 		<div id="header-placeholder"></div>
 		  <h1 style="text-align: center;">PUZZLE DE FIGURAS GEOMÉTRICAS BÁSICAS</h1>
-		</header>
-	  <br>
+	</header>
+    <br>
 
-	  <p class="textosuperior" style="text-align: center;">Este contenido se vincula con el 
+	<p class="textosuperior" style="text-align: center;">Este contenido se vincula con el 
 		<b><a href="https://axelcotongutierrez.github.io/learningmathematicas/projects/Niveles/#level-3-detail" target="_blank">Nivel 3</a></b>
 		 de la materia <a title="Matemáticas" href="https://axelcotongutierrez.github.io/learningmathematicas/tags/?tag=matemáticas" target="_blank"><img class="center-block img-responsive" width="30" alt="Matemáticas" src="/learningmathematicas/assets/images/pages/figuras/Matematicas.png"></a>
 		 y es perteneciente al curso <a title="Infantil" href="https://axelcotongutierrez.github.io/learningmathematicas/tags/?tag=infantil" target="_blank"><img class="center-block img-responsive" style="display: inline-block;" width="30" alt="Infantil" src="/learningmathematicas/assets/images/pages/figuras/infantil.png"></a>
-		</p>
-	  <br>
-
+	</p>
+    <br>
 
     <div class="container2">
         <span class="pregunta">Coloca las piezas en su lugar</span>
+        <!-- Icono de micrófono para reproducir la pregunta -->
+        <img src="img/Megafono.png" id="megaphone-icon-pregunta" alt="Reproducir Pregunta" onclick="playAudioPregunta()" style="cursor: pointer; width: 30px;">
     </div>
+
     <div class="game-container">
         <div id="puzzle-board" class="puzzle-area"></div>
         <div id="puzzle-pieces" class="puzzle-pieces-container"></div>
         <br>
         <button id="check-button" class="guess-button">Comprobar</button>
+        <!-- Icono de micrófono para reproducir el audio debajo del botón Comprobar -->
+        <img src="img/Megafono.png" class="audio-icon" onclick="playAudioComprobar()" alt="Reproducir Comprobar" style="cursor: pointer; width: 30px;">
         <br>
-    <div class="msj" id="result"></div>
-    <br>
-    <button class="guess-button" id="next-question">Volver a jugar</button>
-
+        <div class="msj" id="result"></div>
+        <br>
+        <button class="guess-button" id="next-question">Volver a jugar</button>
     </div>
-    
+
     <script src="script.js"></script>
     <br>
-	<div id="footer-placeholder"></div>
+    <div id="footer-placeholder"></div>
 </body>
 </html>
