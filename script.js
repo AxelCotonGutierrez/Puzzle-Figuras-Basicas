@@ -99,7 +99,7 @@ function initPuzzle() {
         puzzleBoard.appendChild(slot);
     }
 
-    // Añadir eventos táctiles
+    // Añadir eventos táctiles a las piezas
     addTouchEventsToPieces();
 }
 
@@ -136,9 +136,9 @@ function drop(event) {
 function addNextPiece() {
     const nextPiece = remainingPieces.shift();
     document.getElementById('puzzle-pieces').appendChild(nextPiece);
+    addTouchEventsToPiece(nextPiece); // Añadir eventos táctiles a la nueva pieza
 }
 
-// Función para comprobar el puzzle
 function checkPuzzle() {
     let correctCount = 0;
     const numRows = 3;
