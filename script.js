@@ -137,36 +137,7 @@ function addNextPiece() {
     addTouchEventsToPiece(nextPiece); // Añadir eventos táctiles a la nueva pieza
 }
 
-function checkPuzzle() {
-    let correctCount = 0;
-    const numRows = 3;
-    const numCols = 3;
 
-    for (let row = 0; row < numRows; row++) {
-        for (let col = 0; col < numCols; col++) {
-            let slot = document.getElementById('slot-' + row + '-' + col);
-            let piece = slot.firstChild;
-
-            if (piece && piece.id === 'piece-' + row + '-' + col) {
-                correctCount++;
-            }
-        }
-    }
-
-    const resultDisplay = document.getElementById('result');
-    const checkButton = document.getElementById('check-button'); // Botón de comprobar
-
-    if (correctCount === numRows * numCols) {
-        resultDisplay.textContent = '¡Correcto! Todas las piezas están en el lugar adecuado.';
-        resultDisplay.style.color = 'green';
-        playAudio(felicidadesAudio); // Reproducir audio de felicitaciones
-        checkButton.disabled = true; // Deshabilitar el botón de comprobar
-    } else {
-        resultDisplay.textContent = `Algunas piezas están en el lugar incorrecto. Intenta de nuevo. (${correctCount} de ${numRows * numCols} correctas)`;
-        resultDisplay.style.color = 'red';
-        playAudio(intentarAudio); // Reproducir audio de inténtalo de nuevo
-    }
-}
 function checkPuzzle() {
     let correctCount = 0;
     const numRows = 3;
