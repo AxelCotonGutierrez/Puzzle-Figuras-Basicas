@@ -5,7 +5,7 @@
 
 Dentro del blog: https://axelcotongutierrez.github.io/learningmathematicas/
 
-Vídeo Explicativo: https://www.youtube
+Vídeo Explicativo del código: https://www.youtube.com/watch?v=uy_-mXtAE20
 
 Juego para Infantil
 
