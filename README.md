@@ -13,6 +13,9 @@ Puedes probar el juego en esta url:
 
 https://axelcotongutierrez.github.io/Puzzle-Figuras-Basicas/
 
+Para saber como jugar solo ver la sección correspondiente en nuestro Canal de Youtube:
+
+https://www.youtube.com/watch?v=99MFgGSEc5s
 
 ¡Bienvenido a un emocionante desafío de rompecabezas que te sumergirá en el fascinante mundo de las figuras geométricas básicas: el triángulo, el círculo y el cuadrado! En esta intrigante travesía, explorarás el universo de las formas geométricas, centrándote en estas piezas esenciales.
 
