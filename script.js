@@ -278,3 +278,5 @@ function addTouchEventsToPiece(piece) {
     piece.addEventListener('touchmove', touchMove, { passive: false });
     piece.addEventListener('touchend', touchEnd);
 }
+
+mostrarContador("Infantil/Matemáticas/Geometría/FormasBásicas", "puzzlegeo1");
